@@ -4,6 +4,11 @@
  */
 package allasKereso;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +22,7 @@ public class projekt extends javax.swing.JFrame {
         String szulDatum = "";
         String email = "";
         String telSzam = "";
+        String munka = "";
     public projekt() {
         initComponents();
 
@@ -235,20 +241,19 @@ public class projekt extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(lblLeiras)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(lblLeiras))
                             .addComponent(jScrollPane1)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(lblNev, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 104, Short.MAX_VALUE))
+                                        .addGap(0, 98, Short.MAX_VALUE))
                                     .addComponent(pnlMunkak, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(pnlAllasok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -347,6 +352,7 @@ public class projekt extends javax.swing.JFrame {
     }//GEN-LAST:event_rdbMunka4ItemStateChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    valasztottMunka();
     vezeteknev = txfVezeteknev.getText();
     keresztnev = txfKeresztnev.getText();
     telSzam = txfTel.getText();
@@ -355,9 +361,23 @@ public class projekt extends javax.swing.JFrame {
     if (vezeteknev.length() == 0 || keresztnev.length() == 0 || telSzam.length() == 0 || email.length() == 0 || szulDatum.length() == 0){
         JOptionPane.showMessageDialog(rootPane, "Hiányos adatok!");
     } else{
-        JOptionPane.showMessageDialog(rootPane, "Minden adat felkerült!");
+        JOptionPane.showMessageDialog(rootPane, "Az adatokat sikeresen felvittük! Hamarosan emailban értesítjük!\n" + vezeteknev + " " + keresztnev + "\n" + szulDatum + "\n" + email + "\n" + telSzam + "\n" + munka );
+        System.exit(0);
     }
+    
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void valasztottMunka() {
+        if (rdbMunka1.isSelected()){
+            munka = rdbMunka1.getText();
+        }else if(rdbMunka2.isSelected()){
+            munka = rdbMunka2.getText();
+        }else if(rdbMunka3.isSelected()){
+            munka = rdbMunka3.getText();
+        }else if(rdbMunka4.isSelected()){
+            munka = rdbMunka4.getText();
+        }
+    }
 
     private void munka4Leiras() {
         if(rdbMunka4.getText() == "RoboOps Dynamics Ltd." && rdbMunka4.isSelected()){
